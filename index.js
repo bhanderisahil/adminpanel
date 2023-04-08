@@ -9,7 +9,18 @@ var cookieParser = require('cookie-parser')
 const path = require("path");
 
 port = 8080;
-require("./config/mongodb")
+
+const mongoose = require('mongoose');
+
+mongoose.connect("mongodb+srv://bhanderisahil:sahil%40123@cluster0.vttnglj.mongodb.net/test",{
+    useNewUrlParser : true,
+    useUnifiedTopology : true
+}).then(()=>{
+    console.log("coonection successful");
+}).catch((err)=>{
+    console.log("connection failed",err);
+})
+
 require("./midleware/passport-local")
 
 const adminrouter = require("./router/adminrouter");
